@@ -12,8 +12,8 @@ application {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -21,7 +21,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter:5.9.2')
+    // JUnit 5 dependencies (latest stable - fully backwards compatible)
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.11.0')
+    testImplementation('org.junit.jupiter:junit-jupiter-params:5.11.0')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.11.0')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher:1.11.0')
+
+    // Google Java Format for code formatting tasks (latest)
+    runtimeOnly('com.google.googlejavaformat:google-java-format:1.23.0')
 }
 
 run {
@@ -39,7 +46,7 @@ test {
 }
 
 checkstyle {
-    toolVersion = '10.12.4'
+    toolVersion = '10.17.0'  // Latest version
     configFile = file('config/checkstyle/checkstyle.xml')
 }
 
